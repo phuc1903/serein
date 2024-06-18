@@ -1,0 +1,9 @@
+#toast-container > .toast {
+    font-size: 1.8rem; 
+    width: 400px;
+ }
+
+ .page-item.active span {
+    border: 1px solid var(--main-new);
+    padding: 5px 10px;
+ }

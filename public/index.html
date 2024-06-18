@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Section</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .comment-section {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .comment {
+            position: relative;
+            padding: 10px 10px 10px 60px;
+            border-bottom: 1px solid #eaeaea;
+            margin-bottom: 10px;
+        }
+        .comment:last-child {
+            border-bottom: none;
+        }
+        .comment .profile-pic {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .comment .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .comment .comment-header .name {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .comment .comment-text {
+            margin: 0;
+        }
+        .comment .options {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .comment .options .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .comment .options .dropdown a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+        }
+        .comment .options .dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+        .comment-input {
+            display: flex;
+            margin-top: 20px;
+        }
+        .comment-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #eaeaea;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        .comment-input button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .comment-input button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="comment-section">
+    <div class="comment">
+        <img src="profile-pic-url.jpg" alt="Profile Picture" class="profile-pic">
+        <div class="comment-header">
+            <span class="name">John Doe</span>
+            <span class="options">⋮
+                <div class="dropdown">
+                    <a href="#">Edit</a>
+                    <a href="#">Delete</a>
+                </div>
+            </span>
+        </div>
+        <p class="comment-text">This is a comment.</p>
+    </div>
+    <div class="comment">
+        <img src="profile-pic-url.jpg" alt="Profile Picture" class="profile-pic">
+        <div class="comment-header">
+            <span class="name">John Doe</span>
+            <span class="options">⋮
+                <div class="dropdown">
+                    <a href="#">Edit</a>
+                    <a href="#">Delete</a>
+                </div>
+            </span>
+        </div>
+        <p class="comment-text">This is a comment.</p>
+    </div>
+    <div class="comment-input">
+        <input type="text" placeholder="Add a comment...">
+        <button>Add Comment</button>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.options').forEach(option => {
+        option.addEventListener('click', function() {
+            this.querySelector('.dropdown').style.display = 'block';
+        });
+        window.addEventListener('click', function(e) {
+            if (!option.contains(e.target)) {
+                option.querySelector('.dropdown').style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

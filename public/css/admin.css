@@ -1,0 +1,48 @@
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    min-height: 70px;
+    margin-bottom: 24px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    color: #333;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.card p {
+    font-size: 1.8rem;
+    margin-bottom: 0;
+    color: #666;
+}
+
+.card .btn-dashboard {
+    font-size: 1.4rem;
+    color: var(--white-color);
+    background-color: var(--main-new);
+    padding: 12px;
+    display: block;
+    border-radius: 10px;
+    margin-top: 24px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    transition: all .3s linear;
+}
+
+.card .btn-dashboard:hover {
+    color: var(--hover-color);
+    background-color: var(--white-color);
+    border: 1px solid var(--hover-color);
+}
+

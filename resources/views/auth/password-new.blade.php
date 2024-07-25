@@ -1,4 +1,4 @@
-<x-layouts.layout>
+<x-layouts.layout title="New Password - Serein Jewelry">
 
     <form action="{{ route('password.update') }}" method="post" id="login-form" class="form-main">
         @csrf

@@ -27,7 +27,7 @@ class ShopController extends Controller
             $totalProducts = Product::count();
         }
 
-        $products = $query->latest()->paginate(6);
+        $products = $query->latest()->paginate(6)->withQueryString();
 
         return view('shop', [
             'products' => $products,

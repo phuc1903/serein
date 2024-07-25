@@ -1,4 +1,4 @@
-<x-layouts.layout>
+<x-layouts.layout title="Register - Serein Jewelry">
     <form action="{{ route('register-store') }}" id="register-form" method="post" class="form-main">
         @csrf
         <div class="input-form-with">

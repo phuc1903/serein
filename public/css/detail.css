@@ -489,10 +489,13 @@ html {
 
 .totalprice .box__price {
     display: flex;
+    align-items: center;
 }
 
-.totalprice .box__price .price {
-    margin-right: 5px;
+.totalprice .box__price .price,
+.totalprice .box__price .price_ship,
+.totalprice .box__price .price-total {
+    margin-right: 4px;
 }
 
 .totalprice .usas--m {

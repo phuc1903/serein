@@ -45,10 +45,10 @@ Route::middleware(['checkAuth', 'verified'])->group(function() {
     // Favorite
     Route::controller(FavoriteController::class)->group(function() {
         Route::middleware('auth')->group(function() {
-            Route::get('/favorite/{user}',  'index')->name('favorite');
-            Route::delete('/favorite/{product}',  'destroy')->name('favorite.destroy');
+            Route::get('/favorite',  'index')->name('favorite');
+            Route::delete('/favorite/{favorite}',  'destroy')->name('favorite.destroy');
         });
-        Route::post('/favorite',  'store')->name('favorite-store');
+        Route::post('/favorite', 'store')->name('favorite-store');
         
     });
 

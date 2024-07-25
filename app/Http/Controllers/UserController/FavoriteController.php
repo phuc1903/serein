@@ -11,24 +11,32 @@ use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
-    public function index(User $user)
+    public function index()
     {
-        $favorites = $user->favorites()->with('product')->latest()->paginate(4);
-        $totalFavorites = $favorites->total();
+        if (Auth::check()) {
+            $user = Auth::user();
 
+            $favorites = $user->favorites()->with('product')->latest()->paginate(4);
 
-        $favorites->map(function($favorite) {
-            $product = $favorite->product;
-            $favorite->title = $product->title;
-            $favorite->image = $product->image;
-            $favorite->price = $product->price;
-            return $favorite;
-        });
+            $totalFavorites = $favorites->total();
 
-        // dd(session()->get('favorites'));
+            $favorites->transform(function($favorite) {
+                $product = $favorite->product;
+                $favorite->title = $product->title;
+                $favorite->image = $product->image;
+                $favorite->price = $product->price;
+                return $favorite;
+            });
 
-        return view('article.favorite', ['favorites' => $favorites]);
+            return view('article.favorite', [
+                'favorites' => $favorites,
+                'totalFavorites' => $totalFavorites
+            ]);
+        }
+
+        return redirect()->route('login')->with('error', 'Bạn cần đăng nhập để xem sản phẩm yêu thích.');
     }
+
 
 
     public function store(Request $request)
@@ -67,8 +75,9 @@ class FavoriteController extends Controller
         return redirect()->back()->with('success', 'Sản phẩm đã được thêm vào danh sách yêu thích. Đăng nhập để được lưu trữ ');
     }
 
-    public function destroy(string $favorite)
+    public function destroy(Favorite $favorite)
     {
-        
+        $favorite->delete();
+        return redirect()->back()->with('success', 'Xóa sản phẩm yêu thích thành công');
     }
 }

@@ -1,4 +1,4 @@
-<x-layouts.layout>
+<x-layouts.layout title="Change Password - Serein Jewelry">
     <form action="{{ route('change-password.store', $user) }}" method="post" id="change-password-form" class="form-main">
         @csrf
         <div id="message" class="error">

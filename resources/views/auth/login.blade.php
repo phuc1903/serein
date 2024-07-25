@@ -1,4 +1,4 @@
-<x-layouts.layout>
+<x-layouts.layout title="Login - Serein Jewelry">
 
     <form method="post" action="{{ route('login-store') }}" id="login-form" class="form-main">
         @csrf

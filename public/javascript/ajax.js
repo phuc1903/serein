@@ -25,120 +25,6 @@ $(document).ready(function () {
         }
     });
 
-    // $("#login-btn").click(function(e){
-    //     e.preventDefault();
-
-        
-    //     if(email == '' || password == ''){
-    //         $("#message").html("Email hoặc mật khẩu không được để trống");
-    //         return false;
-    //     }
-
-    //     var form = $('#login-form');
-
-    //     var loginUrl = form.data('url');
-
-    //     var email = $("#email").val();
-    //     var password = $("#password").val();
-
-    //     var data = {
-    //         'email': email,
-    //         'password': password
-    //     };
-
-    //     $.ajax({
-    //         url : loginUrl,
-    //         type : "POST",
-    //         processData: false,
-    //         contentType: "application/json",
-    //         data: JSON.stringify(data),
-    //         dataType: 'json',
-    //         success : function(response){
-    //             if(response.success){
-    //                 console.log(response.data);
-    //                 // window.location.href = '/dashboard'; // hoặc URL mà bạn muốn chuyển hướng tới
-    //             } else {
-    //                 $("#message").html(response.message);
-    //             }
-    //         },
-    //         error: function (reject) {
-    //             if (reject.status === 422) {
-    //                 var errors = reject.responseJSON.errors;
-    //                 if (errors.email) {
-    //                     $("#email_err").html(errors.email[0]);
-    //                 } else {
-    //                     $("#email_err").html('');
-    //                 }
-    //                 if (errors.password) {
-    //                     $("#password_err").html(errors.password[0]);
-    //                 } else {
-    //                     $("#password_err").html('');
-    //                 }
-    //             }
-    //         }
-    //     });
-    // });
-
-    // $('#register-btn').click(function() {
-    //     if (!checkemail() || !checkpass() || !checkcpass || !checkname) {
-    //         $("#message").html(`Vui lòng nhập đầy đủ thông tin`);
-    //     } else {
-    //         $("#message").html("");
-    //         var data = {
-    //             name: $("#name").val(),
-    //             email: $("#email").val(),
-    //             password: $("#password").val(),
-    //             cpassword: $("#cpassword").val()
-    //         };
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "/serein/register",
-    //             data: data,
-    //             dataType: 'json',
-    //             success: function (data) {
-    //                 if (data.success) {
-    //                     window.location.href = "http://localhost/serein/login";
-    //                 } else {
-    //                     $("#message").html(data.message);
-    //                 }
-    //             },
-    //             error: function (xhr, status, error) {
-    //                 console.error(xhr.responseText);
-    //                 console.error("Status: " + status);
-    //                 console.error("Error: " + error);
-    //             }
-    //         });
-    //     }
-    // })
-
-    // $('#password-new').click(function() {
-    //     if (!checkcpass() || !checkpass() || !checkOTP()) {
-    //         $("#message").html(`Vui lòng nhập đầy đủ thông tin`);
-    //     } else {
-    //         $("#message").html("");
-    //         var data = {
-    //             password: $("#password").val(),
-    //             cpassword: $("#cpassword").val(),
-    //             OTP: $("#OTP").val()
-    //         }
-
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "/serein/handlePasswordNew",
-    //             data: data,
-    //             dataType: "json",
-    //             success: function (response) {
-    //                 if(response.success) {
-    //                     window.location.href = "http://localhost/serein/index";
-    //                 }else {
-    //                     alert(response.message);
-    //                 }
-    //             },
-    //         });
-    //     }
-    // })
-
-
     function updateQuantity(action, element) {
         var inputQuantity = $(element).siblings('.quantity-input');
         var quantity = parseInt(inputQuantity.val()) || 1;
@@ -163,7 +49,26 @@ $(document).ready(function () {
                     if (result.isConfirmed) {
                         quantity = 1;
                         inputQuantity.val(quantity);
+                        // Thay vì reload toàn bộ trang, bạn có thể cập nhật lại số lượng và giá tiền tại đây
+                        $.ajax({
+                            url: route,
+                            method: "POST",
+                            data: {
+                                _token: $('meta[name="csrf-token"]').attr('content'),
+                                product_id: productId,
+                                quantity: quantity
+                            },
+                            success: function(response) {
+                                if (!response.error) {
+                                    $(element).closest('.product__item').find('.price__value').text(response.totalPriceProduct);
+                                    $('.totalprice .price').text(response.totalPrice);
+                                    $('.totalprice .price-total').text(response.totalCartPrice);
+                                    $('.totalQuantityCart').html("(" + response.totalQuantityCart +")");
+                                }
+                            }
+                        });
                     }
+                    return;
                 });
             }
         }
@@ -361,7 +266,6 @@ function checkcpass() {
         return true;
     }
 }
-
 
 function password_show_hide() {
     console.log('ok');

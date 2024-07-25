@@ -20,7 +20,7 @@ class CartController
         else {
             $products = null;
         }
-        // dd($carts);
+        // dd(session()->get('carts'));
         return view('cart', ['products' => $products]);
     }
 
@@ -107,7 +107,7 @@ class CartController
         }
 
         $newCarts = session()->get('carts');
-
+        
         return response()->json(['success' => true, 'message' => "Xóa sản phẩm thành công", "newCarts" => $newCarts]);
     }
 
@@ -134,7 +134,7 @@ class CartController
 
         $totalCartPrice = $totalPrice + 18000;
 
-        $totalQuantityCart = 0;
+        $totalQuantityCart = 1;
 
         foreach($carts as $cart) {
             $totalQuantityCart += $cart['quantity'];

@@ -1,4 +1,4 @@
-<x-layouts.layout>
+<x-layouts.layout title="Forgot Password - Serein Jewelry">
 
     <form action="{{ route('password.email') }}" method="post" id="login-form" class="form-main">
         @csrf

@@ -98,7 +98,7 @@
                                                 }
                                             }
                                         @endphp
-                                        <div class="price">{{ number_format($totalPrice, 0, ',', '.') }}</div>
+                                        <div id="totalPriceProduct" class="price">{{ number_format($totalPrice, 0, ',', '.') }}</div>
                                         <div class="usas">VNĐ</div>
                                     </div>
                                 </div>
@@ -114,22 +114,22 @@
                                 <div class="product__price">
                                     <label for="" class="text text--bold">Tổng tiền</label>
                                     <div class="box__price">
-                                        <div class="price-total text--bold">
+                                        <div id="totalPrice" class="price-total text--bold">
                                             {{ number_format($totalPrice + 18000, 0, ',', '.') }}</div>
                                         <div class="usas">VNĐ</div>
                                     </div>
                                 </div>
                                 <!-- button thanh toan -->
                                 @if ($products != null)
-                                    <form action="{{ route('order.store') }}" method="post">
+                                    <form class="paymentCart" action="{{ route('order.store') }}" method="post">
                                         @csrf
                                         <button type="submit" class="btn__pay"><a>Thanh toán ship Cod</a></button>
                                     </form>
+                                    <form class="paymentCart" action="{{ route('momo_payment') }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn__pay" name="payUrl"><a>Thanh toán momo</a></button>
+                                    </form>
                                 @endif
-                                <form action="{{ route('momo_payment') }}" method="post">
-                                    @csrf
-                                    <button type="submit" class="btn__pay" name="payUrl"><a>Thanh toán momo</a></button>
-                                </form>
                                 <div class="link">
                                     <img src="img/post1.png" alt="">
                                     <img src="img/post1.png" alt="">

@@ -52,8 +52,8 @@
                         <span class="totalQuantityCart">({{ $totalQuantity }})</span>
                     </div>
                     <div class="right__icon-item">
-                        <a href="{{ route('cart.index') }}" class="right__icon"><i class="fa-regular fa-heart"></i></a>
-                        <span class="totalQuantityCart">({{ session()->get('totalFavorites', 0) }})</span>
+                        <a href="{{ route('favorite')}}" class="right__icon"><i class="fa-regular fa-heart"></i></a>
+                        <span class="totalQuantityFavorite">({{ session()->get('totalFavorites', 0) }})</span>
                     </div>
                 </div>
             </div>

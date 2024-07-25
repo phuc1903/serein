@@ -33,7 +33,7 @@ class FavoriteController extends Controller
                 'totalFavorites' => $totalFavorites
             ]);
         }
-
+        
         return redirect()->route('login')->with('error', 'Bạn cần đăng nhập để xem sản phẩm yêu thích.');
     }
 

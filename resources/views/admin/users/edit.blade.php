@@ -1,23 +1,16 @@
 <x-layouts.layout-admin>
-
-
     <div class="col l-9 main__admin">
         <form action="{{ route('admin.user.update', $user) }}" method="post" class="col l-9 main__admin"
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <h1>Sửa đơn hàng</h1>
+            <h1>Sửa vai trò người dùng</h1>
             <div class="main__admin-inputs">
                 <div class="col l-6 main__admin-input-item">
-                    <label for="role">Danh mục</label>
-                    <select name="role" id="" style="margin-bottom: 20px; padding: 15px; border-radius: 8px;">
-                        @if ($user->role == 1)
-                        <option value="{{ $user->role }}">Admin</option>
-                        <option value="0">User</option>
-                        @else
-                        <option value="{{ $user->role }}">User</option>
-                        <option value="1">Admin</option>
-                        @endif
+                    <label for="role">Vai trò</label>
+                    <select name="role" id="role" style="margin-bottom: 20px; padding: 15px; border-radius: 8px;">
+                        <option value="1" {{ $user->role == 1 ? 'selected' : '' }}>Admin</option>
+                        <option value="0" {{ $user->role == 0 ? 'selected' : '' }}>User</option>
                     </select>
                 </div>
             </div>
@@ -26,6 +19,4 @@
             </div>
         </form>
     </div>
-
-
 </x-layouts.layout>

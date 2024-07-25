@@ -3,6 +3,21 @@
 
     <div class="col l-9 main__admin">
         <h1>Quản lý đơn hàng</h1>
+        <div class="d-flex">
+            @php
+                $currentStatus = request()->route('status');
+            @endphp
+
+            <a class="filter {{ is_null($currentStatus) ? 'active' : '' }}" href="{{ route('admin.order.list') }}">Xem tổng đơn hàng</a>
+
+            <a class="filter {{ $currentStatus == 'Giao hàng thành công' ? 'active' : '' }}" href="{{ route('admin.order.status', 'Giao hàng thành công') }}">Xem đơn hàng đã bán</a>
+
+            <a class="filter {{ $currentStatus == 'Đang xét duyệt' ? 'active' : '' }}" href="{{ route('admin.order.status', 'Đang xét duyệt') }}">Xem đơn hàng chưa xét duyệt</a>
+
+            <a class="filter {{ $currentStatus == 'Đang giao hàng' ? 'active' : '' }}" href="{{ route('admin.order.status', 'Đang giao hàng') }}">Xem đơn hàng đang giao</a>
+
+            <a class="filter {{ $currentStatus == 'Đã hủy' ? 'active' : '' }}" href="{{ route('admin.order.status', 'Đã hủy') }}">Xem đơn hàng đã bị hủy</a>
+        </div>
         <div class="manager-main">
             <table class="manager-table" style="width: 100%;">
                 <tr class="manager-header">

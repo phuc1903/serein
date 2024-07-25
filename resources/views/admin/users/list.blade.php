@@ -35,7 +35,7 @@
                             <span>{{ $user->email }}</span>
                         </td>
                         <td class="manager-price">
-                            <span>{{ $user->role }}</span>
+                            <span>{{ $user->role == "1" ? "Admin" : "User" }}</span>
                         </td>
                         <td class="manager-status">
                             <span>{{ $user->phone }}</span>

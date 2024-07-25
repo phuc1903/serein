@@ -2,7 +2,7 @@
 
     <div class="col l-9 main__admin">
         <h1>Hồ sơ chi tiết</h1>
-        <form action="{{ route('info-update', $user) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('info-update', Auth::user()) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="main_admin-item">

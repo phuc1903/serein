@@ -4,8 +4,11 @@
         <div class="grid wide summary__box">
             <div class="row">
                 <div class="col l-6 summary-images">
-                    <img src="{{ asset('storage/'.$product->image) }}" alt="" class="img-main"
-                        onclick="handleThumbnailClick(event)">
+                        @if(Str::contains($product->image, 'product_images'))
+                        <img src="{{ asset('storage/'.$product->image) }}" alt="" class="img-main">
+                        @else
+                            <img src="{{ asset('img/' . $product->image) }}">
+                        @endif
                     {{-- <div class="listimg listimg-sizes">
                         <img src="asset/img/bong-tai-bac-3.png" alt="" class="thumbnails-item"
                             onclick="changeImage(this)">

@@ -67,15 +67,18 @@ $('.choice__remove').click(function () {
 
                             var totalPriceProduct = 0;
                             var totalPrice = 0;
+                            var totalQuantity = 0;
 
                             cartItems.forEach(function (item) {
                                 totalPriceProduct += item.price * item.quantity;
+                                totalQuantity += item.quantity
                             });
 
                             totalPrice = totalPriceProduct + 18000;
 
                             $('#totalPriceProduct').text(totalPriceProduct.toLocaleString('vi-VN'));
                             $('#totalPrice').text(totalPrice.toLocaleString('vi-VN'));
+                            $('.totalQuantityCart').text(totalQuantity);
 
                             if (cartItems.length <= 0) {
                                 $('.paymentCart').css('display', 'none');

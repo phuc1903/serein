@@ -1762,6 +1762,32 @@ body {
 .d-flex {
     display: flex;
 }
+
+.d-flex .filter {
+    color: var(--main-new);
+    border: 1px solid var(--main-new);
+    margin: 0 12px 12px 12px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    transition: all .3s linear;
+}
+
+.d-flex .filter:hover {
+    color: var(--white-color);
+    background-color: var(--main-new);
+}
+
+.d-flex .filter.active {
+    background-color: var(--hover-color);
+    color: var(--white-color);
+}
+
+.d-flex .filter.active:hover {
+    background-color: var(--white-color);
+    color: var(--hover-color);
+}
+
 .manager-action a {
     color: var(--main-new);
 }

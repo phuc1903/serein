@@ -94,6 +94,8 @@ Route::controller(AuthController::class)->group(function() {
         Route::get('/register', 'register')->name('register');
         Route::post('/register', 'registerStore')->name('register-store');
 
+    });
+
         // Reset password
 
         Route::get('/forgot-password', 'forgotPassword')->name('password.request');
@@ -103,9 +105,8 @@ Route::controller(AuthController::class)->group(function() {
         Route::get('/reset-password/{token}', 'passwordReset')->name('password.reset');
 
         Route::post('/reset-password', 'passwordUpdate')->name('password.update');
-    });
-    
-    Route::middleware(['auth', 'noCache'])->group(function() {
+        
+        Route::middleware(['auth', 'noCache'])->group(function() {
 
         // Change Password
 

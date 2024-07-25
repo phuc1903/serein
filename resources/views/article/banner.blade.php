@@ -7,8 +7,8 @@
                     <h3>Đăng ký ngay</h3>
                     <h2>Freeship</h2>
                     <span>Tham gia thành viên ngay hôm nay để nhận ưu đãi đặc biệt - mã freeship giúp bạn tiết kiệm chi phí vận chuyển và có thể sử dụng trong 2 lần mua sắm. Đừng bỏ lỡ cơ hội tiện ích này, hãy đăng ký ngay để trải nghiệm mua sắm tiết kiệm và thuận lợi! </span>
-                    <a href="register.html" class="banner-bottom-left" style="display: block;">
-                        <button type="submit" name="">Đămg ký ngay</button>
+                    <a href="{{ route('shop') }}" class="banner-bottom-left" style="display: block;">
+                        <button type="submit" name="">Đăng ký ngay</button>
                     </a>
                 </div>
             </div>

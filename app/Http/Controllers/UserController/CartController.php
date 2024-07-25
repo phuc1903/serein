@@ -45,7 +45,7 @@ class CartController
         }
 
         $quantity = 1;
-        if($request->quantity >0) {
+        if($request->quantity > 0) {
             $quantity = $request->quantity;
         }
 
@@ -53,7 +53,7 @@ class CartController
     
         if(isset($carts[$request->product_id])) {
             
-            $carts[$request->product_id]['quantity']++;
+            $carts[$request->product_id]['quantity'] += $quantity;
             
         } else {
         

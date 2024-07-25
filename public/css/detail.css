@@ -48,11 +48,17 @@ html {
     cursor: pointer;
 }
 
-/* .summary-images {
-    position: relative;
-    justify-content: center;
-    align-items: center;
-} */
+.summary-images {
+    width: 100%;
+    min-height: 100px;
+    height: 400px;
+}
+
+.summary-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .summary__box .listimg-sizes {
     margin-top: 20px;
@@ -296,6 +302,7 @@ html {
     padding: 6px 12px;
     border-radius: 8px;
     font-size: 1.6rem;
+    cursor: pointer;
     transition: all .3s linear;
 }
 

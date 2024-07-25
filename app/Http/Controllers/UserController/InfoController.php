@@ -22,9 +22,9 @@ class InfoController extends Controller
     public function update(Request $request, User $user)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|min:3|max:255',
-            'address' => 'required|string|min:5|max:255',
-            'phone' => 'required|numeric',
+            'name' => 'nullable|string|min:3|max:255',
+            'address' => 'nullable|string|min:5|max:255',
+            'phone' => 'nullable|numeric',
             'avatar' => 'nullable|file|max:5000|mimes:png,jpg,webp',
         ]);
 

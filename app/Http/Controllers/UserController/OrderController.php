@@ -172,10 +172,7 @@ class OrderController extends Controller
                     ]);
                 }
 
-                
-
                 $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
-
 
                 $partnerCode = env('MOMO_PARTNERCODE');
                 $accessKey = env('MOMO_ACCESSKEY');
@@ -209,19 +206,21 @@ class OrderController extends Controller
                     'signature' => $signature);
                 $result = $this->execPostRequest($endpoint, json_encode($data));
                 $jsonResult = json_decode($result, true);  // decode json
+
+                dd($jsonResult)
                 
 
-                $orderMail = [$user, $order];
-                if($orderMail) {
-                    dispatch(new SendNewOrderMailJob($orderMail));
-                }
-                if ($orderDetails && $order) {
-                    $cartsDelete = session()->pull('carts');
-                    if ($cartsDelete) {
-                        // dd($orderMail);
-                        return redirect()->to($jsonResult['payUrl'])->with('success', 'Thanh toán thành công');
-                    }
-                }
+                // $orderMail = [$user, $order];
+                // if($orderMail) {
+                //     dispatch(new SendNewOrderMailJob($orderMail));
+                // }
+                // if ($orderDetails && $order) {
+                //     $cartsDelete = session()->pull('carts');
+                //     if ($cartsDelete) {
+                //         // dd($orderMail);
+                //         return redirect()->to($jsonResult['payUrl'])->with('success', 'Thanh toán thành công');
+                //     }
+                // }
             }
         }
     }

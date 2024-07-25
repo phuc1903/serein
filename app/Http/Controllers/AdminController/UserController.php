@@ -58,13 +58,16 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'role' => 'nullable|integer'
+            'role' => 'nullable|integer|in:0,1'
         ]);
+        $user->role = $request->role;
 
-        $user->update(['role' => $request->role]);
+        $user->save();
 
         return redirect()->back()->with('success', 'Cập nhật thành công');
     }
+
+
 
     /**
      * Remove the specified resource from storage.

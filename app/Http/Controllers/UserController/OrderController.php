@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
@@ -122,12 +123,21 @@ class OrderController extends Controller
         );
         curl_setopt($ch, CURLOPT_TIMEOUT, 5);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-        //execute post
+
         $result = curl_exec($ch);
-        //close connection
+
+        if (curl_errno($ch)) {
+            $error_msg = curl_error($ch);
+            curl_close($ch);
+            Log::error('cURL Error: ' . $error_msg);
+            return "cURL Error: " . $error_msg;
+        }
+
         curl_close($ch);
         return $result;
     }
+
+
 
     public function momo_payment(Request $request) 
     {
@@ -207,20 +217,17 @@ class OrderController extends Controller
                 $result = $this->execPostRequest($endpoint, json_encode($data));
                 $jsonResult = json_decode($result, true);  // decode json
 
-                dd($jsonResult)
-                
-
-                // $orderMail = [$user, $order];
-                // if($orderMail) {
-                //     dispatch(new SendNewOrderMailJob($orderMail));
-                // }
-                // if ($orderDetails && $order) {
-                //     $cartsDelete = session()->pull('carts');
-                //     if ($cartsDelete) {
-                //         // dd($orderMail);
-                //         return redirect()->to($jsonResult['payUrl'])->with('success', 'Thanh toán thành công');
-                //     }
-                // }
+                $orderMail = [$user, $order];
+                if($orderMail) {
+                    dispatch(new SendNewOrderMailJob($orderMail));
+                }
+                if ($orderDetails && $order) {
+                    $cartsDelete = session()->pull('carts');
+                    if ($cartsDelete) {
+                        // dd($orderMail);
+                        return redirect()->to($jsonResult['payUrl'])->with('success', 'Thanh toán thành công');
+                    }
+                }
             }
         }
     }
